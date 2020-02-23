@@ -1,12 +1,68 @@
+@import "./css/css3";
+
+$themeColors: (
+  "primary": #4f3961,
+  "primary-light": lighten(#4f3961, 40%),
+  "secondary":#ea728c,
+  "thridy": #fc9d9d,
+  "lighty": #f3d4d4,
+);
+
+@function color($colorName){
+  @return map-get($map: $themeColors, $key: $colorName)
+}
+
+@mixin flexibe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 body{
-  background: #272727;
+  background: color(primary-light);
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 15px 25px;
+  box-sizing: border-box
 }
 
+ul{
+  padding: 0;
+  list-style-type: none;
+}
+li{
+  text-decoration: none;
+}
+a{
+  text-decoration: none;
+}
+main nav{
+  @include flexibe;
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height:45px;
+  background: color(primary);
+  ul{
+    @include flexibe;
+    li{
+      padding: .1em .5em;
+    }
+    li a{
+      color: color(lighty);
+      &:hover{
+        color: color(thridy)
+      }
+    }
+  };
+  .btn-burger-warpper{
+    margin-left: auto;
+    margin-right: .4rem;
+  }
+}
 .App {
   font-family: sans-serif;
   text-align: center;
@@ -16,18 +72,17 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80px;
-    height: 80px;
+    width: 1rem;
+    height: 1rem;
     cursor: pointer;
     transition: all .5s ease-in-out;
-    border: 2px solid #fff;
 
     &--burger{
-      width: 50px;
-      height: 6px;
+      width: 1rem;
+      height: 2px;
       background: #fff;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(255,101,47,.2);
+      border-radius: 1px;
+      box-shadow: 0 2px 2px rgba(255,101,47,.2);
       transition: all .5s ease-in-out;
       position: relative;
 
@@ -35,31 +90,31 @@ body{
         content: '';
         position: absolute;
         left: 0;
-        width: 50px;
-        height: 6px;
+        width: 1rem;
+        height: 2px;
         background: #fff;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(255,101,47,.2);
+        border-radius: 1px;
+        box-shadow: 0 2px 2px rgba(255,101,47,.2);
         transition: all .5s ease-in-out;
       };
       &::before{
-        transform: translateY(-16px)
+        transform: translateY(-.3em)
       }
       &::after{
-        transform: translateY(16px)
+        transform: translateY(.3em)
       }
     }
   }
   .menu-btn.open .menu-btn--burger{
-      transform: translateX(-50px);
+      transform: translateX(-.3em);
       background: transparent;
       box-shadow: none;
 
       &::before{
-        transform: rotate(45deg) translate(35px, -35px)
+        transform: rotate(45deg) translate(.2em, -.2em)
       }
       &::after{
-        transform: rotate(-45deg) translate(35px, 35px)
+        transform: rotate(-45deg) translate(.2em, .2em)
       }
   }
   
